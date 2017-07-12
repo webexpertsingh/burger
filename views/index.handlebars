@@ -1,0 +1,37 @@
+<div class="columns container">
+    <div class="column">
+        <nav class="panel">
+            <h2 class="panel-heading">Menu Board</h2>
+            {{#each burger}} {{#unless this.devoured}}
+            <li class="panel-block">
+                <form action="/{{this.id}}?_method=PUT" method="POST">
+                    <input type="hidden" name="devoured" value="true">
+                    <button class="button is-danger is-outlined is-small" type="submit">devour it!</button>
+                </form>
+                {{burger_name}}
+
+            </li>
+            {{/unless}} {{/each}}
+    </div>
+    <div class="column">
+        <h2>What are you craving?</h2>
+        <form class="create-update-form" action="/" method="POST">
+            <div class='form-group'>
+                <textarea class='field' type='text' id='burger' name="burger_name" placeholder="add your favorite burger..." required></textarea>
+            </div>
+            <button class="button is-danger is-outlined is-small" type="submit">Add to the menu!</button>
+        </form>
+    </div>
+    <div class="column">
+        <nav class="panel">
+            <h2 class="panel-heading">DEVOURED</h2>
+            <ul>
+                {{#each burger}} {{#if this.devoured}}
+                <li class="panel-block">
+                    {{burger_name}}
+                </li>
+                {{/if}} {{/each}}
+            </ul>
+        </nav>
+    </div>
+</div>
